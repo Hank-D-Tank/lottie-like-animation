@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Like Button Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: "Bricolage Grotesque", sans-serif;
+        background: white;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .like-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        text-align: center;
+        position: relative;
+        max-width: 280px;
+        padding-bottom: 0;
+      }
+
+      .card-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      .card-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+        margin-bottom: 24px;
+      }
+
+      #canvas {
+        cursor: pointer;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .social-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+
+      .social-icon svg {
+        width: 35px;
+        height: 35px;
+        fill: none;
+        transition: all 0.3s ease;
+        margin-bottom: 4px;
+        color: #2000ff;
+      }
+
+
+      .icons{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .quote-section {
+        position: relative;
+        margin-bottom: 32px;
+        padding: 20px 0;
+      }
+
+      .quote-icon {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 32px;
+        color: #2000ff;
+        opacity: 0.8;
+        z-index: 2;
+      }
+
+      .quote-text {
+        font-size: 16px;
+        font-style: italic;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 12px;
+        font-weight: 400;
+      }
+
+      .quote-author {
+        font-size: 14px;
+        color: #718096;
+        font-weight: 500;
+        text-align: right;
+      }
+
+      .quote-section{
+        scale: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="like-card">
+      <div class="quote-section">
+        <div class="quote-icon">"</div>
+        <div class="quote-text">
+          "Design is not just what it looks like and feels like. Design is how it works."
+        </div>
+        <div class="quote-author">— Steve Jobs</div>
+      </div>
+      
+      <div class="icons">
+        <canvas id="canvas" width="100" height="100"></canvas>
+      
+      <div class="social-icons">
+        <div class="social-icon comment" title="Comment">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        
+        <div class="social-icon share" title="Share">
+          <svg viewBox="0 0 24 24">
+            <circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="0.6"/>
+            <circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="0.6"/>
+            <circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="0.6"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" fill="none" stroke="currentColor" stroke-width="0.6"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" fill="none" stroke="currentColor" stroke-width="0.6"/>
+          </svg>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+    <script type="module">
+      import { DotLottie } from "https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web/+esm";
+
+      const lottieInstance = new DotLottie({
+        loop: false,
+        canvas: document.getElementById("canvas"),
+        src: "lottie.json",
+        autoplay: false,
+      });
+
+      let isFirstSegment = true;
+
+      document.getElementById("canvas").addEventListener("click", () => {
+        if (isFirstSegment) {
+          lottieInstance.setSegment(0, 120);
+          lottieInstance.play();
+        } else {
+          lottieInstance.setSegment(120, lottieInstance.totalFrames);
+          lottieInstance.play();
+        }
+        
+        isFirstSegment = !isFirstSegment;
+      });
+    </script>
+  </body>
+</html> 
